@@ -63,6 +63,25 @@ table {
   padding-left: 1em;
 }
 
+.burgers-list {
+  /* Use a grid layout instead of tables for the burger selection section */
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+}
+
+.burgers-list h3 {
+  text-align: center;
+}
+
+.burger1 {
+     grid-column: 1;
+ }
+ .burger2 {
+     grid-column: 2;
+ }
+ .burger3 {
+     grid-column: 3;
+ }
 #customer-info {
   /* Add a border to the two sections */
   border: 2px dashed currentColor;
