@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+section {
+  /* Top and bottom margins are 1em, Right and left margins are automatically
+  set to fill the rest of the screen*/
+  /* Adds margins to the sections */
+  margin: 2px 2px 4px 4px;
+}
+
+button:hover {
+  /* Change the cursor when hovering over the order button */
+  color: grey;
+  cursor: pointer;
+}
+
+table {
+  width: 75%;
+}
+
+#banner h1 {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  top: 2em;
+  font-size: 40px;
+}
+
+.allergy {
+  /* A rule to make the allergy information bold */
+  font-weight: bold;
+}
+
+#banner figure {
+  /* Create a header that places an image behind the headline */
+  margin: auto;
+}
+
+#banner img {
+  height: auto;
+  width: 100%;
+  opacity: 0.25;
+}
+
+#banner {
+  height: 250px;
+  overflow: hidden;
+  text-align:center;
+}
+
+
+#select-burger {
+  /* Different text and background color for the two different sections
+  (burger selection and customer information) */
+  background-color: #000000;
+  color: white;
+  /* Add a border to the two sections */
+  border: 2px dashed currentColor;
+  padding-top: 1em;
+  padding-bottom:1em;
+  padding-left: 1em;
+}
+
+#customer-info {
+  /* Add a border to the two sections */
+  border: 2px dashed currentColor;
+  padding-top: 1em;
+  padding-bottom:1em;
+  padding-left: 1em;
+}
+
+#order-button {
+  /* Top and bottom margins are 2em, Right and left margins are automatically
+  set to fill the rest of the screen*/
+  /* Adds margins to the order button */
+  margin: 2em auto;
+}

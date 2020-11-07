@@ -1,9 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>DELI-VERY</title>
+        <title>Home Page</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
     <body>
-        <h1>Hello World!!!</h1>
+      <main>
+        <section id="banner">
+          <h1>Welcome to BurgerHeaven Online</h1>
+          <figure>
+            <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/burger-place-facebook-cover-advertisement-des-design-template-0143dde9c9e3da6e46174d6dc969faa8_screen.jpg?ts=1593871198" alt="">
+          </figure>
+        </section>
+
+        <section id="select-burger">
+          <h2> Select burger</h2>
+          <p>This is where you execute burger selection</p>
+
+          <table>
+            <thead>
+                <tr>
+                    <th><h3>The Fire Burger</h3></th>
+                    <th><h3>Fried turkey burger</h3></th>
+                    <th><h3>A Double w/ Cheese</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                      <figure align="center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQKCXIBqrFyAGQn_7aNAK4bMBzCLWenq-Y8bg&usqp=CAU" alt="" width="100">
+                      </figure>
+                    </td>
+                    <td>
+                      <figure align="center">
+                        <img src="https://www.mcdonalds.com/content/dam/usa/nfl/nutrition/items/regular/desktop/t-mcdonalds-qpc-deluxe-burger.jpg" alt="" width="100">
+                      </figure>
+                    </td>
+                    <td>
+                      <figure align="center">
+                        <img src="https://www.mcdonalds.com/content/dam/usa/nfl/nutrition/items/regular/desktop/t-mcdonalds-Double-Quarter-Pounder-with-Cheese.jpg" alt="" width="100">
+                      </figure>
+                    </td>
+                </tr>
+                <tr>
+                    <td><ul>
+                        <li>Kobe beef of the highest quality</li>
+                        <li>Covered in fancy cheese (contains <span class="allergy">lactose</span>)</li>
+                        <li>Cold-leavened sourdough bread (contains <span class="allergy">gluten</span>)</li>
+                    </ul></td>
+                    <td><ul>
+                        <li>Deep fried Turkish turkey</li>
+                        <li>A slice of pink stuff (contains <span class="allergy">lactose</span>)</li>
+                        <li>Shake-n-bake gluten-free bread</li>
+                    </ul></td>
+                    <td><ul>
+                        <li>Two layers of pure meat</li>
+                        <li>Lots of yummy cheese (contains <span class="allergy">lactose</span>)</li>
+                        <li>Sweet bread bun (contains <span class="allergy">gluten</span>)</li>
+                    </ul></td>
+                </tr>
+            </tbody>
+        </table>
+        </section>
+
+        <section id="customer-info">
+          <h2>Customer information</h2>
+          <p>This is where you provide necessary information</p>
+          <h3>Delivery Information</h3>
+
+          <form class="delivery-form">
+            <p>
+              <label for="fullname">Full Name</label><br>
+              <input type="text" id="fullname" name="fn" required="required" placeholder="First and Last name">
+            </p>
+            <p>
+              <label for="email">E-mail</label><br>
+              <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+            </p>
+            <p>
+              <label for="street">Street Name</label><br>
+              <input type="text" id="street" name="sn" required="required" placeholder="Street name">
+            </p>
+            <p>
+              <label for="house">House</label><br>
+              <input type="number" id="house" name="hn" required="required" placeholder="House number">
+            </p>
+            <p>
+              <label for="payment">Payment options</label><br>
+              <select id="payment" name="payment">
+                  <option selected="selected" value="creditCard">Credit Card</option>
+                  <option>Debit Card</option>
+                  <option>Cash on Delivery</option>
+                  <option>Mobile payments (Swish)</option>
+              </select>
+          </p>
+          <p>
+            <label for="gender">Gender:</label><br>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="non-binary" name="gender" value="nonBinary">
+            <label for="non-binary">Non-binary</label><br>
+            <input type="radio" id="undisclosed" name="gender" value="undisclosed" checked>
+            <label for="undisclosed">Undisclosed</label>
+          </p>
+          </form>
+        </section>
+
+        <button type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button>
+
+        <footer><hr> <p>&#169; 2018 Hypothetical Burgers Inc.</p> </footer>
+
+      </main>
+
     </body>
+
+
 </html>
