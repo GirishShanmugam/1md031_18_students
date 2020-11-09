@@ -60,6 +60,23 @@ function loadInformationVue() {
   });
 }
 
+var orders = new Vue({
+    el: '#orders',
+    data: {
+      orderInfo: []
+    },
+    methods: {
+      // functionality to the "Order" button
+      markDone: function() {
+          // Call the function in JavaScript from Vue code
+          orderInfo = placeOrder();
+          for (var i = 0; i < orderInfo.length; i++) {
+            Vue.set(this.orderInfo, i, orderInfo[i]);
+          }
+        }
+      }
+});
+
 // Option 1: Populate info here in javascript and render HTML
 // populateWebPageVue();
 

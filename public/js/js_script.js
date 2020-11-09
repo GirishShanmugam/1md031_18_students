@@ -99,9 +99,33 @@ function loadInformation() {
   populateWebPage(food);
 }
 
+/* A function that reads the values from your text fields, radio buttons and
+drop-down menu and returns them in an array */
+function placeOrder() {
+  // Accessing text field input and selected values
+  var fullName = document.getElementById("fullname").value;
+  var emailId = document.getElementById("email").value;
+  var streetName = document.getElementById("street").value;
+  var houseNo = document.getElementById("house").value;
+  var paymentInfo = document.getElementById("payment").value;
+  var radios = document.getElementsByName('gender');
+  for (var i = 0; i < radios.length; i++) {
+    if (radios[i].type === 'radio' && radios[i].checked) {
+        var genderValue = radios[i].value;
+    }
+  }
+  return [fullName, emailId, streetName, houseNo, paymentInfo, genderValue]
+}
+
+/* A JavaScript event listener for your "order" button */
+// Commented out event listener in JavaScript
+// var myButton = document.getElementById("order-button");
+// myButton.addEventListener("click", placeOrder);
+
+
 // Option 1: Populate info here in javascript and render HTML
 // var foodInfo = createBurgerInfo()
 // populateWebPage(foodInfo);
 
 // Option 2: Use data from JSON and render HTML
-loadInformation();
+// loadInformation();
