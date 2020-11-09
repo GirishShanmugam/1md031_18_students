@@ -4,10 +4,11 @@
         <title>Home Page</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="/css/style.css" >
+        <script type="text/javascript" src="js/menu.js"></script>
         <!-- Link both the JavaScipt and the Vue file to this document -->
-        <script src="js/js_script.js" defer></script>
-        <!-- <script src="https://vuejs.org/js/vue.js"></script>
-        <script src="js/vue_script.js"></script> -->
+        <!-- <script src="js/js_script.js" defer></script> -->
+        <script src="https://vuejs.org/js/vue.js"></script>
+        <script src="js/vue_script.js" defer></script>
     </head>
     <body>
       <main>
@@ -18,47 +19,27 @@
           </figure>
         </section>
 
-        <section id="select-burger">
+        <section id="select-burger" >
           <h2> Select burger</h2>
           <p>This is where you execute burger selection</p>
 
           <div id="burgers-list">
-            <!-- <div class="burger1">
-              <h3>The Fire Burger</h3>
+
+            <!-- This div is only for VueJs, comment this out for JavaScript -->
+            <div class='menu-item' v-for="burger in burgers">
+              <h3>{{burger.name}}</h3>
               <figure>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQKCXIBqrFyAGQn_7aNAK4bMBzCLWenq-Y8bg&usqp=CAU" alt="" width="100">
+                <img :src=burger.image alt="">
               </figure>
               <ul>
-                  <li>Kobe beef of the highest quality</li>
-                  <li>Covered in fancy cheese (contains <span class="allergy">lactose</span>)</li>
-                  <li>Cold-leavened sourdough bread (contains <span class="allergy">gluten</span>)</li>
+                  <li>{{burger.kCal}} kCal</li>
+                  <!-- Only displays allergy information if relevant(only if it contains gluten or lactose) -->
+                  <li v-if="burger.hasLactose">Contains <span class="allergy">lactose</span></li>
+                  <li v-if="burger.hasGluten">Contains <span class="allergy">gluten</span></li>
               </ul>
             </div>
 
-            <div class="burger2">
-              <h3>Fried turkey burger</h3>
-              <figure>
-                <img src="https://www.mcdonalds.com/content/dam/usa/nfl/nutrition/items/regular/desktop/t-mcdonalds-qpc-deluxe-burger.jpg" alt="" width="100">
-              </figure>
-              <ul>
-                  <li>Deep fried Turkish turkey</li>
-                  <li>A slice of pink stuff (contains <span class="allergy">lactose</span>)</li>
-                  <li>Shake-n-bake gluten-free bread</li>
-              </ul>
-            </div>
-            <div class="burger3">
-              <h3>A Double w/ Cheese</h3>
-              <figure>
-                <img src="https://www.mcdonalds.com/content/dam/usa/nfl/nutrition/items/regular/desktop/t-mcdonalds-Double-Quarter-Pounder-with-Cheese.jpg" alt="" width="100">
-              </figure>
-              <ul>
-                  <li>Two layers of pure meat</li>
-                  <li>Lots of yummy cheese (contains <span class="allergy">lactose</span>)</li>
-                  <li>Sweet bread bun (contains <span class="allergy">gluten</span>)</li>
-              </ul>
-            </div> -->
           </div>
-
         </section>
 
         <section id="customer-info">
@@ -109,10 +90,6 @@
         <button type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button>
 
         <footer><hr> <p>&#169; 2018 Hypothetical Burgers Inc.</p> </footer>
-
       </main>
-
     </body>
-
-
 </html>
