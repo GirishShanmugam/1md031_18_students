@@ -63,14 +63,24 @@ table {
   padding-left: 1em;
 }
 
-.burgers-list {
+#burgers-list {
   /* Use a grid layout instead of tables for the burger selection section */
   display: grid;
-  grid-template-columns: 300px 300px 300px;
+  grid-template-columns: 250px 250px 250px;
 }
 
-.burgers-list h3 {
+#burgers-list figure {
+  text-align: left;
+  margin-left: auto;
+}
+#burgers-list h3 {
   text-align: center;
+}
+#burgers-list ul {
+  padding-left: 3em;
+}
+#burgers-list figure img {
+  width: 240px;
 }
 
 .burger1 {
