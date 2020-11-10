@@ -67,6 +67,7 @@ table {
   /* Use a grid layout instead of tables for the burger selection section */
   display: grid;
   grid-template-columns: repeat(auto-fill, 260px);
+  height: 420px;
 }
 
 #burgers-list figure {
@@ -98,4 +99,23 @@ table {
   set to fill the rest of the screen*/
   /* Adds margins to the order button */
   margin: 2em auto;
+}
+
+.order-confirmation ul {
+  margin: 0px;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.cart-checkbox {
+  padding-left: 3em;
+  position: absolute;
+  bottom:-0.15em;
+  font-size: 13pt;
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Home Page</title>
+        <title>Order Burgers Online</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="/css/style.css" >
         <script type="text/javascript" src="js/menu.js"></script>
@@ -27,6 +27,7 @@
 
             <!-- This div is only for VueJs, comment this out for JavaScript -->
             <!-- Only displays allergy information if relevant(only if it contains gluten or lactose) -->
+            <!-- a checkbox is added to every burger on the menu -->
             <div class='menu-item' v-for="burger in burgers">
               <h3>{{burger.name}}</h3>
               <figure>
@@ -37,6 +38,10 @@
                   <li v-if="burger.hasLactose">Contains <span class="allergy">lactose</span></li>
                   <li v-if="burger.hasGluten">Contains <span class="allergy">gluten</span></li>
               </ul>
+              <div class="cart-checkbox">
+                <input type="checkbox" :id=burger.name :name=burger.name :value=burger.name>
+                <label :for=burger.name> Add to Order</label>
+              </div>
             </div>
 
           </div>
@@ -67,21 +72,21 @@
             <p>
               <label for="payment">Payment options</label><br>
               <select id="payment" name="payment">
-                  <option selected="selected" value="creditCard">Credit Card</option>
-                  <option value="debitCard">Debit Card</option>
-                  <option value="cash">Cash on Delivery</option>
-                  <option value="swish">Mobile payments (Swish)</option>
+                  <option selected="selected" value="Credit Card">Credit Card</option>
+                  <option value="Debit Card">Debit Card</option>
+                  <option value="Cash">Cash on Delivery</option>
+                  <option value="Swish">Mobile payments (Swish)</option>
               </select>
           </p>
           <p>
             <label for="gender">Gender:</label><br>
-            <input type="radio" id="male" name="gender" value="male">
+            <input type="radio" id="male" name="gender" value="Male">
             <label for="male">Male</label><br>
-            <input type="radio" id="female" name="gender" value="female">
+            <input type="radio" id="female" name="gender" value="Female">
             <label for="female">Female</label><br>
-            <input type="radio" id="non-binary" name="gender" value="nonBinary">
+            <input type="radio" id="non-binary" name="gender" value="non-Binary">
             <label for="non-binary">Non-binary</label><br>
-            <input type="radio" id="undisclosed" name="gender" value="undisclosed" checked>
+            <input type="radio" id="undisclosed" name="gender" value="Undisclosed" checked>
             <label for="undisclosed">Undisclosed</label>
           </p>
           </form>
@@ -90,10 +95,25 @@
           <!-- For Javascript -->
           <!-- <button type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button> -->
 
+          <!-- This is only for VueJs, comment this out for JavaScript -->
           <!-- For VueJs, implemented the event listener for "order" button-->
           <button v-on:click="markDone()" type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button>
+
           <!-- display the received order in the bottom of the customer's HTML page -->
-          <p v-if="orderInfo.length">{{orderInfo}}</p>
+          <div class="order-confirmation" v-if="orderInfo.length">
+            <h2>Order confirmation</h2>
+            <h3>Customer details</h3>
+            <p>Name: {{orderInfo[0]}} <br>
+              Email: {{orderInfo[1]}} <br>
+              Deliver to: {{orderInfo[3]}}, {{orderInfo[2]}} <br>
+              Payment Method: {{orderInfo[4]}} <br>
+              Gender: {{orderInfo[5]}}
+             </p>
+             <h3>Order Summary</h3>
+             <ul v-for="order in orderInfo[6]">
+               <li>{{order}}</li>
+             </ul>
+          </div>
         </div>
 
 

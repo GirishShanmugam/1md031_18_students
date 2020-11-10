@@ -89,6 +89,21 @@ function populateWebPage(food) {
     }
     // insert the information to the burger selection section of the html file
     divClass.appendChild(unorderedList);
+
+    // Add a checkbox to each menu item
+    var cartDiv = document.createElement('div');
+    cartDiv.setAttribute('class', 'cart-checkbox');
+    var inputItem = document.createElement("input");
+    inputItem.setAttribute('type', 'checkbox');
+    inputItem.setAttribute('id', food[burger].name);
+    inputItem.setAttribute('name', food[burger].name);
+    inputItem.setAttribute('value', food[burger].name);
+    cartDiv.appendChild(inputItem);
+    var labelItem = document.createElement("label");
+    labelItem.setAttribute('for', food[burger].name);
+    labelItem.appendChild(document.createTextNode('Add to Order'));
+    cartDiv.appendChild(labelItem);
+    divClass.appendChild(cartDiv);
     burgersList.appendChild(divClass);
   }
 }
@@ -114,13 +129,68 @@ function placeOrder() {
         var genderValue = radios[i].value;
     }
   }
-  return [fullName, emailId, streetName, houseNo, paymentInfo, genderValue]
+  /* check for all menu items if the checkbox is checked. If it is checked,
+  the name of the burger belonging to the checkbox shall be added as well */
+  var selectedBurgers = [];
+  var menuItems = document.querySelectorAll("input[type=checkbox]");
+  for (var i = 0; i < menuItems.length; i++) {
+    if(menuItems[i].checked) {
+      selectedBurgers.push(menuItems[i].name);
+    }
+  }
+  return [fullName, emailId, streetName, houseNo, paymentInfo, genderValue, selectedBurgers]
 }
+
+/* functionality for the order button that writes the information
+to the bottom of the html file when the button is clicked */
+function OrderConfirmation() {
+  var orderDetails = placeOrder();
+  var ordersInfo = document.getElementById("orders");
+  var divClass = document.createElement('div');
+  divClass.setAttribute('class', 'order-confirmation');
+
+  var headlineItem = document.createElement("h2");
+  var headlineValue = document.createTextNode("Order confirmation");
+  headlineItem.appendChild(headlineValue);
+  divClass.appendChild(headlineItem);
+
+  var headlineItem = document.createElement("h3");
+  var headlineValue = document.createTextNode("Customer details");
+  headlineItem.appendChild(headlineValue);
+  divClass.appendChild(headlineItem);
+
+  var paragraphItem = document.createElement("p");
+  paragraphItem.appendChild(document.createTextNode("Name: " + orderDetails[0]));
+  paragraphItem.appendChild(document.createElement("br"));
+  paragraphItem.appendChild(document.createTextNode("Email: " + orderDetails[1]));
+  paragraphItem.appendChild(document.createElement("br"));
+  paragraphItem.appendChild(document.createTextNode("Deliver To: " + orderDetails[3] + ", "+ orderDetails[2]));
+  paragraphItem.appendChild(document.createElement("br"));
+  paragraphItem.appendChild(document.createTextNode("Payment Method: " + orderDetails[4]));
+  paragraphItem.appendChild(document.createElement("br"));
+  paragraphItem.appendChild(document.createTextNode("Gender: " + orderDetails[5]));
+  paragraphItem.appendChild(document.createElement("br"));
+  divClass.appendChild(paragraphItem);
+
+  var headlineItem = document.createElement("h3");
+  headlineItem.appendChild(document.createTextNode("Order Summary"));
+  divClass.appendChild(headlineItem);
+
+  var unorderedList = document.createElement("ul");
+  for (var i = 0; i < orderDetails[6].length; i++) {
+    var listItem = document.createElement("li");
+    listItem.appendChild(document.createTextNode(orderDetails[6][i]));
+    unorderedList.appendChild(listItem);
+  }
+  divClass.appendChild(unorderedList);
+  ordersInfo.appendChild(divClass);
+}
+
 
 /* A JavaScript event listener for your "order" button */
 // Commented out event listener in JavaScript
 // var myButton = document.getElementById("order-button");
-// myButton.addEventListener("click", placeOrder);
+// myButton.addEventListener("click", OrderConfirmation);
 
 
 // Option 1: Populate info here in javascript and render HTML
