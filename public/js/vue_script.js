@@ -1,3 +1,9 @@
+/*jslint es5:true, indent: 2 */
+/*global Vue, io */
+/* exported vm */
+'use strict';
+var socket = io();
+
 /* A function that loops through the array and inserts the information
 to the burger selection section of the index.html file*/
 function populateWebPageVue() {
@@ -60,22 +66,35 @@ function loadInformationVue() {
   });
 }
 
-var orders = new Vue({
-    el: '#orders',
-    data: {
-      orderInfo: []
+var deliveryDispatcher = new Vue({
+  el: '#customer-info',
+  data: {
+    orders: {},
+    orderInfo: []
+  },
+  methods: {
+      addOrder: function () {
+      this.orderInfo = placeOrder();
+      socket.emit("addOrder", { details: { x: this.orders.details.x,
+                                           y: this.orders.details.y },
+                                orderItems: this.orderInfo[4],
+                                personalInfo: [this.orderInfo[0],this.orderInfo[1],
+                              this.orderInfo[2], this.orderInfo[3],]
+                              });
+
     },
-    methods: {
-      // functionality to the "Order" button
-      markDone: function() {
-          // Call the function in JavaScript from Vue code
-          orderInfo = placeOrder();
-          for (var i = 0; i < orderInfo.length; i++) {
-            Vue.set(this.orderInfo, i, orderInfo[i]);
-          }
-        }
-      }
+    // "displayOrder" which is triggered for click-events on the map
+    displayOrder: function (event) {
+      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                    y: event.currentTarget.getBoundingClientRect().top};
+      this.orders = { details: { x: event.clientX - 10 - offset.x,
+                                 y: event.clientY - 10 - offset.y }
+                    };
+    }
+  }
 });
+
+
 
 // Option 1: Populate info here in javascript and render HTML
 // populateWebPageVue();

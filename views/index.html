@@ -3,12 +3,16 @@
     <head>
         <title>Order Burgers Online</title>
         <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="/css/style.css" >
+        <link rel="stylesheet" href="css/deli-very.css">
         <script type="text/javascript" src="js/menu.js"></script>
         <!-- Link both the JavaScipt and the Vue file to this document -->
+        <script src="/socket.io/socket.io.js" defer></script>
         <script src="js/js_script.js" defer></script>
         <script src="https://vuejs.org/js/vue.js"></script>
         <script src="js/vue_script.js" defer></script>
+
     </head>
     <body>
       <main>
@@ -48,6 +52,7 @@
         </section>
 
         <section id="customer-info">
+
           <h2>Customer information</h2>
           <p>This is where you provide necessary information</p>
           <h3>Delivery Information</h3>
@@ -61,14 +66,15 @@
               <label for="email">E-mail</label><br>
               <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
             </p>
-            <p>
-              <label for="street">Street Name</label><br>
-              <input type="text" id="street" name="sn" required="required" placeholder="Street name">
-            </p>
-            <p>
-              <label for="house">House</label><br>
-              <input type="number" id="house" name="hn" required="required" placeholder="House number">
-            </p>
+            <div class="view-box">
+              <div id="dots" v-on:click="displayOrder">
+                  <div
+                    v-for="(order, key) in orders"
+                    v-bind:style="{ left: orders.details.x + 'px', top: orders.details.y + 'px'}">
+                    T
+                  </div>
+              </div>
+            </div>
             <p>
               <label for="payment">Payment options</label><br>
               <select id="payment" name="payment">
@@ -90,14 +96,12 @@
             <label for="undisclosed">Undisclosed</label>
           </p>
           </form>
-        </section>
-        <div id="orders">
           <!-- For Javascript -->
           <!-- <button type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button> -->
 
           <!-- This is only for VueJs, comment this out for JavaScript -->
           <!-- For VueJs, implemented the event listener for "order" button-->
-          <button v-on:click="markDone()" type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button>
+          <button v-on:click="addOrder()" type="submit" id="order-button"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRI8uyIskmFnzEGgXKPYATDRlYZi7MDthLeEw&usqp=CAU" width="30" height="25"> Place my order!</button>
 
           <!-- display the received order in the bottom of the customer's HTML page -->
           <div class="order-confirmation" v-if="orderInfo.length">
@@ -105,17 +109,16 @@
             <h3>Customer details</h3>
             <p>Name: {{orderInfo[0]}} <br>
               Email: {{orderInfo[1]}} <br>
-              Deliver to: {{orderInfo[3]}}, {{orderInfo[2]}} <br>
-              Payment Method: {{orderInfo[4]}} <br>
-              Gender: {{orderInfo[5]}}
+              Deliver to: {{orders.details.x}} x / {{orders.details.y}} y <br>
+              Payment Method: {{orderInfo[2]}} <br>
+              Gender: {{orderInfo[3]}}
              </p>
              <h3>Order Summary</h3>
-             <ul v-for="order in orderInfo[6]">
+             <ul v-for="order in orderInfo[4]">
                <li>{{order}}</li>
              </ul>
           </div>
-        </div>
-
+      </section>
 
         <footer><hr> <p>&#169; 2018 Hypothetical Burgers Inc.</p> </footer>
       </main>

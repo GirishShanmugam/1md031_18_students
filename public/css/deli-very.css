@@ -41,3 +41,8 @@ body {
 	background: rgba(255,255,255, 0.5);
 	padding: 1em;
 }
+
+.personal-info {
+	font-size: 10pt;
+	font-style: italic;
+}

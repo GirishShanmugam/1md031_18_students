@@ -120,8 +120,6 @@ function placeOrder() {
   // Accessing text field input and selected values
   var fullName = document.getElementById("fullname").value;
   var emailId = document.getElementById("email").value;
-  var streetName = document.getElementById("street").value;
-  var houseNo = document.getElementById("house").value;
   var paymentInfo = document.getElementById("payment").value;
   var radios = document.getElementsByName('gender');
   for (var i = 0; i < radios.length; i++) {
@@ -138,7 +136,7 @@ function placeOrder() {
       selectedBurgers.push(menuItems[i].name);
     }
   }
-  return [fullName, emailId, streetName, houseNo, paymentInfo, genderValue, selectedBurgers]
+  return [fullName, emailId, paymentInfo, genderValue, selectedBurgers]
 }
 
 /* functionality for the order button that writes the information
